@@ -1,11 +1,13 @@
 import { config } from "dotenv"
 import app from "./app"
 import { addEstudante } from "./endpoints/addEstudante"
+import { addTurma } from "./endpoints/addTurma"
 
 
 config()
 
-app.post('/users/signup', addEstudante)
+// app.post('/users/signup', addEstudante)
+app.post("/turma", addTurma);
 
 //Endpoint de teste
 // app.get("/", async (req,res)=>{
