@@ -11,18 +11,20 @@ export const addDocenteNaTurma = async (req: Request, res: Response): Promise<vo
             res.statusCode = 422;
             throw "'id_docente' ou 'id_turma' inválido";
         }
+        
         const docente = await getDocente(id_docente);
-        if(!docente){
+        if(docente.length<1){
             res.statusCode = 404;
             throw "'id_docente' não existe";
         }
+
         const turma = await getTurma(id_turma);
-        if(!turma){
+        if(turma.length<1){
             res.statusCode = 404;
             throw "'id_turma' não existe";
         }
         await connection('Docente').update({"turma_id": id_turma}).where('id', id_docente);
-        res.status(201).send("Usuário criado!");
+        res.status(201).send("Docente ingressado na turma!");
     }
     catch (error: any) {
         if(typeof error === "string") {
@@ -32,4 +34,4 @@ export const addDocenteNaTurma = async (req: Request, res: Response): Promise<vo
             res.status(500).send("Ops! Um erro inesperado ocorreu =/")
         }
     }
-}
+} 
