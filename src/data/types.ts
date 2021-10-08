@@ -5,3 +5,10 @@ export type turmaInfo = {
     data_final: Date
     modulo: number
 }
+
+export type estudante = {
+    nome: string
+    email: string
+    data_nasc: string
+    turma_id: number
+}

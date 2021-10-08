@@ -15,17 +15,16 @@ export const addEstudanteNaTurma = async (req: Request, res: Response): Promise<
         }
         
         const aluno = await getEstudante(id_estudante)
-        // if(aluno.length <1 ) {
-        //     res.statusCode = 404
-        //     throw "Não existe id_Estudante"
-        // }
+        if(aluno.length < 1 ) {
+            res.statusCode = 404
+            throw "Não existe id_Estudante"
+        }
 
         const turma = await getTurma(id_turma)
         if(turma.length < 1) {
             res.statusCode = 404
             throw "Não existe id_turma"
         }
-        console.log(id_turma)
         await connection('Estudante').update({"turma_id":id_turma}).where('id', id_estudante)
         res.status(201).send("Estudante adicionado na turma")
         
