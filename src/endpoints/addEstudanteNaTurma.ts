@@ -1,7 +1,7 @@
 import { connection } from '../data/connection'
 import { Request, Response } from 'express'
-import { getEstudante }from '../entidades/Estudante/getEstudante'
 import getTurma from '../entidades/Turma/getTurma'
+import getEstudante from '../entidades/Estudante/getEstudante'
 
 export const addEstudanteNaTurma = async (req: Request, res: Response): Promise<void> => {
     try{
